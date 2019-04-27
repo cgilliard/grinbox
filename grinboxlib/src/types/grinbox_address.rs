@@ -9,8 +9,8 @@ use crate::utils::crypto::Base58;
 pub const GRINBOX_ADDRESS_REGEX: &str = r"^(grinbox://)?(?P<public_key>[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{52})(@(?P<domain>[a-zA-Z0-9\.]+)(:(?P<port>[0-9]*))?)?$";
 pub const GRINBOX_ADDRESS_VERSION_MAINNET: [u8; 2] = [1, 11];
 pub const GRINBOX_ADDRESS_VERSION_TESTNET: [u8; 2] = [1, 120];
-pub const DEFAULT_GRINBOX_DOMAIN: &str = "grinbox.io";
-pub const DEFAULT_GRINBOX_PORT: u16 = 443;
+pub const DEFAULT_GRINBOX_DOMAIN: &str = "mq.mwc.mw";
+pub const DEFAULT_GRINBOX_PORT: u16 = 13420;
 
 pub fn version_bytes() -> Vec<u8> {
     if is_mainnet() {
