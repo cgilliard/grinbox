@@ -10,7 +10,7 @@ pub const GRINBOX_ADDRESS_REGEX: &str = r"^(grinbox://)?(?P<public_key>[12345678
 pub const GRINBOX_ADDRESS_VERSION_MAINNET: [u8; 2] = [1, 11];
 pub const GRINBOX_ADDRESS_VERSION_TESTNET: [u8; 2] = [1, 120];
 pub const DEFAULT_GRINBOX_DOMAIN: &str = "mq.mwc.mw";
-pub const DEFAULT_GRINBOX_PORT: u16 = 13420;
+pub const DEFAULT_GRINBOX_PORT: u16 = 80;
 
 pub fn version_bytes() -> Vec<u8> {
     if is_mainnet() {
