@@ -44,7 +44,7 @@ fn main() {
     let password = std::env::var("BROKER_PASSWORD").unwrap_or("guest".to_string());
 
     let grinbox_domain = std::env::var("GRINBOX_DOMAIN").unwrap_or("127.0.0.1".to_string());
-    let grinbox_port = std::env::var("GRINBOX_PORT").unwrap_or("13420".to_string());
+    let grinbox_port = std::env::var("GRINBOX_PORT").unwrap_or("80".to_string());
     let grinbox_port = u16::from_str_radix(&grinbox_port, 10).expect("invalid GRINBOX_PORT given!");
     let grinbox_protocol_unsecure = std::env::var("GRINBOX_PROTOCOL_UNSECURE").map(|_| true).unwrap_or(false);
 
@@ -56,7 +56,7 @@ fn main() {
     let broker_uri = broker_uri.unwrap();
 
     let bind_address =
-        std::env::var("BIND_ADDRESS").unwrap_or_else(|_| "0.0.0.0:13420".to_string());
+        std::env::var("BIND_ADDRESS").unwrap_or_else(|_| "0.0.0.0:80".to_string());
 
     info!("Broker URI: {}", broker_uri);
     info!("Bind address: {}", bind_address);
