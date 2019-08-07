@@ -28,6 +28,7 @@ mod server;
 use broker::Broker;
 use server::AsyncServer;
 use std::net::ToSocketAddrs;
+use ws::Settings;
 
 fn main() {
     env_logger::init();
@@ -65,7 +66,34 @@ fn main() {
     let sender = broker.start().expect("failed initiating broker session");
     let response_handlers_sender = AsyncServer::init();
 
-    ws::Builder::new()
+
+    let s = Settings {
+        max_connections: 20000,
+        queue_size: 5,
+        panic_on_new_connection: false,
+        panic_on_shutdown: false,
+        fragments_capacity: 10,
+        fragments_grow: true,
+        fragment_size: 65535,
+        in_buffer_capacity: 2048,
+        in_buffer_grow: true,
+        out_buffer_capacity: 2048,
+        out_buffer_grow: true,
+        panic_on_internal: true,
+        panic_on_capacity: false,
+        panic_on_protocol: false,
+        panic_on_encoding: false,
+        panic_on_queue: false,
+        panic_on_io: false,
+        panic_on_timeout: false,
+        shutdown_on_interrupt: true,
+        masking_strict: false,
+        key_strict: false,
+        method_strict: false,
+        encrypt_server: false,
+        tcp_nodelay: false,
+    };
+    ws::Builder::new().with_settings(s)
         .build(|out| AsyncServer::new(out, sender.clone(), response_handlers_sender.clone(), &grinbox_domain, grinbox_port, grinbox_protocol_unsecure))
         .unwrap()
         .listen(&bind_address[..])
